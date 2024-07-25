@@ -1,9 +1,37 @@
-var express = require('express');
-var router = express.Router();
+const mongoose = require('mongoose');
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+mongoose.connect("mongodb://127.0.0.1:127017/vigimages");
+
+const userSchema = new mongoose.Schema({
+  username: {
+    type: String,
+    required: true,
+    unique: true
+  },
+  fullName: {
+    type: String,
+    required: true
+  },
+  email: {
+    type: String,
+    required: true,
+    unique: true
+  },
+  password: {
+    type: String,
+    required: true
+  },
+  // posts: [{
+  //   type: mongoose.Schema.Types.ObjectId,
+  //   ref: 'Post'
+  // }],
+  profilePicture: {
+    type: String
+  }
+}, {
+  timestamps: true
 });
 
-module.exports = router;
+const User = mongoose.model('User', userSchema);
+
+module.exports = User;
