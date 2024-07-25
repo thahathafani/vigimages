@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 
-mongoose.connect("mongodb://127.0.0.1:127017/vigimages");
+const host = 'localhost';
+const port = '27017';
+const database = 'mydatabase';
 
 const userSchema = new mongoose.Schema({
   username: {
